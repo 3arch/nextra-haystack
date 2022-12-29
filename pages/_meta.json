@@ -1,0 +1,23 @@
+{
+  "index": {
+    "title": "Home",
+    "type": "page"
+  },
+  "end_user": {
+    "title": "Getting Started",
+    "type": "page"
+  },
+  "developer": {
+    "title": "Developer Docs",
+    "type": "page"
+  },
+  "phLink": {
+    "title": "Project-Haystack",
+    "type": "page",
+    "href": "https://project-haystack.org/",
+    "newWindow": true
+  },
+  "jsTest": {
+    "display": "hidden"
+  }
+}
