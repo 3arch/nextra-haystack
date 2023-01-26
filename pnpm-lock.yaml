@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@novo-int/novo-react': ^1.0.0
+  '@novo-int/novo-react': ^0.7.6
   antd: ^5.0.7
   next: ^13.0.7
   nextra: ^2.0.1
@@ -10,7 +10,7 @@ specifiers:
   react-dom: ^18.2.0
 
 dependencies:
-  '@novo-int/novo-react': 1.0.0
+  '@novo-int/novo-react': 0.7.6
   antd: 5.0.7_biqbaboplfbrettd7655fr4n2y
   next: 13.0.7_biqbaboplfbrettd7655fr4n2y
   nextra: 2.0.1_gvvct4imq5upoiloat43sswrza
@@ -2371,8 +2371,8 @@ packages:
       fastq: 1.15.0
     dev: false
 
-  /@novo-int/novo-react/1.0.0:
-    resolution: {integrity: sha512-U2sjVrxOAhkk7rzqyyzubIsPZ8AhE+M0XgVY6NPW3spehWS6wuv7103Qopa9WqcySYNFsH5O4sHOjKKHkcH7Cw==, tarball: download/@novo-int/novo-react/1.0.0/e8de120659184f035159472347396b8dd36a9287}
+  /@novo-int/novo-react/0.7.6:
+    resolution: {integrity: sha512-gfTj5HN4wWJJDBJOAalF4+YQCUNpAWdylNCocuZudQcuSFInystCanHSl3qS3JnJMTaxK4Anq2Ju8yeaDztKQw==, tarball: download/@novo-int/novo-react/0.7.6/8528f6227cb3c56ff200e8d0cac6eb5268157fc5}
     dependencies:
       '@ant-design/icons': 4.8.0_biqbaboplfbrettd7655fr4n2y
       '@ctrl/tinycolor': 3.5.0
