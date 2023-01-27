@@ -1,20 +1,44 @@
-# Project Haystack
+import {Card} from "@tremor/react"
+import {Grid} from "@novo-int/novo-react"
+
+# Project Haystack Documentation
 
 Project Haystack is an open source initiative to develop a common data model and tagging conventions for building automation and industrial control systems. The goal of the project is to make it easier to analyze and understand data from these systems, and to facilitate interoperability between different systems and applications.
 
+[End Users](/end-user) - [Developers](/developer) - [Integrators](/integrator)
+
+
 ## Understanding Taxonomy, Ontology, and Vocabulary
 
-- Taxonomy refers to the practice of classifying things into categories and subcategories, often for the purpose of organization and navigation. In the context of Project Haystack, taxonomy refers to the way in which data is organized and categorized.
+<Grid numCols={2} yGap="1rem">
+    ---
+    <Card decoration="top" decorationColor="blue">
+        
+        **Vocabulary**
+        
+        Refers to the set of words and phrases used to describe a particular subject or 
+        area of expertise. In the context of Project Haystack, a **def** refers to terms and tags 
+        used to describe data in a consistent and meaningful way.
+    </Card>
 
-- Ontology is the branch of philosophy concerned with the nature of being and existence. In the context of Project Haystack, ontology refers to the way in which data is modeled and the relationships between different data points.
+    ---
 
-- Vocabulary refers to the set of words and phrases used to describe a particular subject or area of expertise. In the context of Project Haystack, vocabulary refers to the set of terms and tags used to describe data in a consistent and meaningful way.
+    <Card  decoration="top" decorationColor="blue">   
+        **Taxonomy** 
+        
+        Refers to the practice of classifying things into categories and subcategories, 
+        soften for the purpose of organization and navigation. Here, taxonomy refers to the way 
+        in which data is organized and categorized using the **subtype** and **supertype** relationships.
+    </Card>
 
 ---
+    <Card  decoration="top" decorationColor="blue">
+        **Ontology** 
+        
+        Refers to the branch of philosophy concerned with the nature of being and existence. In the 
+        context of Project Haystack, ontology refers to the way in which data is modeled and the relationships 
+        between different data points. There are many different asociations that might come up between defs, for 
+        example **airRef**, **elecRef**, **chillerRef**, etc. 
+    </Card>
 
-## Getting Started
-
-- [End User Documentation](/end-user)
-- [Developer Documentation](/developer)
-- [Integrator Documentation](/integrator)
-
+</Grid>

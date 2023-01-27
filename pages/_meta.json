@@ -14,5 +14,14 @@
   "integrator": {
     "title": "Integrators",
     "type": "page"
+  },
+  "def-playground": {
+    "title": "Def Playground",
+    "type": "page"
+  },
+  "ph-link": {
+    "title": "Project Haystack",
+    "type": "page",
+    "href": "https://project-haystack.org/doc/index"
   }
 }

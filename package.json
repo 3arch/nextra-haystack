@@ -1,6 +1,7 @@
 {
 	"dependencies": {
 		"@novo-int/novo-react": "^1.0.0",
+		"@tremor/react": "^1.6.1",
 		"antd": "^5.0.7",
 		"next": "^13.0.7",
 		"nextra": "^2.0.1",

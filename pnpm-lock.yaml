@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@novo-int/novo-react': ^1.0.0
+  '@tremor/react': ^1.6.1
   antd: ^5.0.7
   next: ^13.0.7
   nextra: ^2.0.1
@@ -11,6 +12,7 @@ specifiers:
 
 dependencies:
   '@novo-int/novo-react': 1.0.0
+  '@tremor/react': 1.6.1_biqbaboplfbrettd7655fr4n2y
   antd: 5.0.7_biqbaboplfbrettd7655fr4n2y
   next: 13.0.7_biqbaboplfbrettd7655fr4n2y
   nextra: 2.0.1_gvvct4imq5upoiloat43sswrza
@@ -2383,7 +2385,7 @@ packages:
       '@testing-library/jest-dom': 5.16.5
       '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
       '@testing-library/user-event': 14.4.3
-      '@tremor/react': 1.4.0_biqbaboplfbrettd7655fr4n2y
+      '@tremor/react': 1.6.1_biqbaboplfbrettd7655fr4n2y
       '@types/jest': 29.2.5
       '@types/node': 18.11.18
       '@types/react-dom': 18.0.10
@@ -2847,8 +2849,8 @@ packages:
     engines: {node: '>= 6'}
     dev: false
 
-  /@tremor/react/1.4.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-zoE8vNq9uU7LSyDDpnQuZel8Ga1Tc4S2Ny7juJdvxFJi7F1uEXDyBoOzZ7WQoxhcfU9ml9dNFoxnp4smjTYi+w==}
+  /@tremor/react/1.6.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-mo64UVPArdPuzIAWDZvn3Fz+LLTJogA1fWGUfvtTjAKMVmRpY4GBC2ha4pWRHUphKwgvUoWjARoEb4/BOzDuqQ==}
     peerDependencies:
       react: ^18.0.0
     dependencies:
