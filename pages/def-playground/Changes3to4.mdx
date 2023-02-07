@@ -1,0 +1,109 @@
+## <a name="overview"></a>Overview
+
+Haystack 3 defined a total of 230 tags. Of these, 180 remain unchanged. The others have been modified as follows.
+
+These are renamed or turned into conjuncts:
+
+* ahuRef => [airRef](airRef)
+* airCooled => [airCooling](airCooling)
+* chilledWaterCool => [chilledWaterCooling](chilledWaterCooling)
+* chilledWaterPlant => [chilled-water-plant](chilled-water-plant)
+* chilledWaterPlantRef => [chilledWaterRef](chilledWaterRef)
+* closedLoop => [condenserClosedLoop](condenserClosedLoop)
+* co => [co](co) [concentration](concentration)
+* co2 => [co2](co2) [concentration](concentration)
+* constantVolume  => [constantAirVolume](constantAirVolume)
+* coolOnly => [coolingOnly](coolingOnly)
+* dew => [dewPoint](dewPoint)
+* dxCool => [dxCooling](dxCooling)
+* elecHeat => [elecHeating](elecHeating)
+* elecMeterLoad => [elecRef](elecRef)
+* elecMeterRef => [elecRef](elecRef)
+* elecPanel => [elec-panel](elec-panel)
+* elecPanelOf => [elecRef](elecRef)
+* elecReheat => [reheat](reheat) [elecHeating](elecHeating)
+* gasHeat => [naturalGasHeating](naturalGasHeating)
+* gasMeterLoad => [naturalGasRef](naturalGasRef)
+* hisInterpolate => [hisMode](hisMode)
+* hotWaterHeat => [hotWaterHeating](hotWaterHeating)
+* hotWaterPlant => [hot-water-plant](hot-water-plant)
+* hotWaterPlantRef => [hotWaterRef](hotWaterRef)
+* hotWaterReheat => [hotWaterHeating](hotWaterHeating)
+* lights => [light-level](light-level)
+* lightLevel => [illuminance](illuminance)
+* lightsGroup => [lighting-zone-space](lighting-zone-space) or [luminaire](luminaire)
+* mag => [magnitude](magnitude)
+* max => [maxVal](maxVal)
+* min => [minVal](minVal)
+* occupancyIndicator => [occupancy](occupancy)
+* oil => [fuelOil](fuelOil)
+* openLoop => [condenserOpenLoop](condenserOpenLoop)
+* rooftop => [rtu](rtu)
+* screw => [rotaryScrew](rotaryScrew)
+* sitePanel => [elecRef](elecRef)
+* steamHeat => [steamHeating](steamHeating)
+* steamMeterLoad => [steamRef](steamRef)
+* steamPlant => [steam-plant](steam-plant)
+* steamPlantRef => [steamRef](steamRef)
+* subPanelOf => [elecRef](elecRef)
+* sunrise => [daytime](daytime)
+* uv => [unitVent](unitVent)
+* variableVolume => [variableAirVolume](variableAirVolume)
+* vavMode => [hvacMode](hvacMode)
+* waterCooled => [waterCooling](waterCooling)
+* waterMeterLoad => `xxxWaterRef` such as [chilledWaterRef](chilledWaterRef)
+* weather => [see weather](#weather)
+* weatherRef => [see weather](#weather)
+* weatherPoint => [see weather](#weather)
+
+
+These tags are not ported:
+
+* connection => [see networks](#networks)
+* device1Ref => [see networks](#networks)
+* device2Ref => [see networks](#networks)
+* reheating  => was only used by one VAV max flow sp
+
+
+## <a name="weather"></a>Weather
+
+In Haystack 3, weather stations were modeled via the `weather` tag, and their points were modeled via the `weatherPoint` tag.  In Haystack 4, we use the [weather](weather) marker on the points as the [pointSubject](pointSubject).  And stations are modeled via the [weatherStation](weatherStation) tag.  Likewise, the `weatherRef` tag is now renamed to `weatherStationRef`.
+
+Weather points are mapped from Haystack 3 to Haystack 4 as follows:
+
+    Haystack 3            Haystack 4             Notes
+    -------------------   --------------------   ------------------------
+    weatherCond           weatherCond            same
+    air temp              air temp               same
+    wetBulb temp          air wetBulb            pair with air not temp
+    apparent temp         air feelsLike          renamed, pair with air not temp
+    dew temp              air dewPoint           pair with air not temp
+    humidity              air humidity           pair with air
+    barometric pressure   atmospheric pressure   renamed
+    sunrise               daytime                renamed
+    precipitation         precipitation          same
+    cloudage              cloudage               same
+    solar irradiance      solar irradiance       same
+    wind direction        wind direction         same
+    wind speed            wind speed             same
+    visibility            visibility             same
+
+See [weatherStation](weatherStation) children section for full list of points.
+
+## <a name="lighting"></a>Lighting
+
+Most tags related to lighting have not been included pending the work under [WG 705](https://project-haystack.org/forum/topic/705)
+
+## <a name="networks"></a>Networks
+
+Haystack 3 included a prototype for modeling networks, devices, and connections between them.  It was never implemented by any vendors and was not complete, so it has not been ported to Haystack 4.  However, some of the core concepts are found in the `phIct` library including:
+
+* [network](network)
+* [device](device)
+* [protocol](protocol)
+
+
+## <a name="symbols"></a>Symbols
+
+Symbol is added as a new scalar type in Haystack 4.  In Zinc, it is represented as `^name` and in JSON with the "y:" prefix.  The format version was left as "3.0" to minimize ecosystem disruption since symbols are only used with defs and unlikely to occur in normal Haystack data.
+

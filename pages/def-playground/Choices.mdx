@@ -1,0 +1,46 @@
+## <a name="overview"></a>Overview
+
+Choices define exclusive relationship between a set of marker tags.  For example, [ductSection](ductSection) is an exclusive choice - you choose one option such as [discharge](discharge) or [return](return).  But you cannot use [discharge](discharge) and [return](return) together.
+
+Many common concepts in our ontology fit this pattern:
+
+* [pointFunction](pointFunction)
+* [coolingProcess](coolingProcess)
+* [heatingProcess](heatingProcess)
+* [ductSection](ductSection)
+* [pipeFluid](pipeFluid)
+* [pipeSection](pipeSection)
+
+
+## <a name="definition"></a>Definition
+
+Choices are defined as a subtype of [choice](choice) (which is itself a subtype of [marker](marker)).  They are registered on a given entity using [tagOn](tagOn).  For example, the [pointFunction](pointFunction) choice identifies a point as [sensor](sensor), [cmd](cmd), or [sp](sp).  The definition looks like this:
+
+    def: ^pointFunction
+    is: ^choice
+    tagOn: ^point
+    ---
+    def: ^sensor
+    is: ^pointFunction
+    ---
+    def: ^cmd
+    is: ^pointFunction
+    ---
+    def: ^sp
+    is: ^pointFunction
+
+In the code above, pointFunction subtypes choice.  Then the exclusive set of choices are subtypes of pointFunction.  This informs us that when configuring a point, you should choose exactly one marker between the three choices of sensor, cmd, and sp.
+
+## <a name="ofChoices"></a>Of Choices
+
+There are some situations, where we wish the choice to reuse an existing taxonomy tree where subtyping does not make sense.  For example, the [pipeFluid](pipeFluid) choice defines that we should annotate a [pipe](pipe) with the type of [fluid](fluid) it conveys.  In this situation, it would be awkward to have fluid subtype pipeFluid.  Instead we can define the choice to use an arbitrary set of subtypes using the [of](of) tag.  Here is what the definition of pipeFluid looks like:
+
+    def: ^pipeFluid
+    is: ^choice
+    of: ^fluid
+    tagOn: [^pipe, ^valve-actuator, ^pump-motor]
+
+This definition informs us that when creating a pipe, valve, or pump that we should select exactly one subtype of [fluid](fluid) to model the working fluid.
+
+A given choice must use only one of these mechanisms.  If the choice defines the `of` tag, then the referent defines the choice options (and the choice must have no subtypes).  If the `of` tag is not defined, then it is assumed that the choice subtypes define the options.
+

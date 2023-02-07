@@ -1,0 +1,70 @@
+import { Card, Typography, Row, Col } from 'antd';
+import "antd/dist/antd.css";
+
+
+
+export const verticals = [
+  {
+    name: 'Meter',
+    summary: 'A meter is a device that measures the flow of energy or utilities such as electricity, gas, or water.',
+    link: '/meter',
+  },
+  {
+    name: 'AHU',
+    summary: 'An AHU, or air handling unit, is a device used to condition and circulate air in a building.',
+    link: '/ahu',
+  },
+  {
+    name: 'Chiller',
+    summary: 'A chiller is a device that removes heat from a liquid, such as water, and transfers it to the air.',
+    link: '/chiller',
+  },
+  {
+    name: 'Boiler',
+    summary: 'A boiler is a device used to heat water or produce steam for heating or other purposes.',
+    link: '/boiler',
+  },
+  {
+    name: 'Lighting',
+    summary: 'Lighting refers to the use of artificial light sources to provide illumination in a building or outdoor space.',
+    link: '/lighting',
+  },
+  {
+    name: 'Elevator',
+    summary: 'An elevator is a device used for vertical transportation of people or goods between the floors of a building.',
+    link: '/elevator',
+  },
+];
+
+
+export const VerticalCards = () => (
+  <Row gutter={16}>
+    {verticals.map(vertical => (
+      <Col span={12} key={vertical.name}>
+        <Card style={{ margin: '1rem' }}>
+          <Typography.Title level={4}>{vertical.name}</Typography.Title>
+          <Typography.Paragraph>{vertical.summary}</Typography.Paragraph>
+          <a href={vertical.link}>Learn more</a>
+        </Card>
+      </Col>
+    ))}
+  </Row>
+);
+
+
+
+## Verticals and Use Casse
+
+Project Haystack defines the following verticals:
+
+- Meter
+- AHU (Air Handling Unit)
+- Chiller
+- Boiler
+- Lighting
+- Elevator
+- etc.
+
+Each vertical has its own set of data points and properties, but they all follow the same basic structure and format.
+
+<VerticalCards />

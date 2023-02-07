@@ -1,7 +1,4 @@
 {
     "index": "Integrator Documentation",
-    "overview": "Overview of Integration",
-    "building-automation": "Integration with Building Automation Systems",
-    "data-historians": "Integration with Data Historians",
-    "best-practices": "Best Practices for Integration"
+    "verticals": "Verticals"
 }

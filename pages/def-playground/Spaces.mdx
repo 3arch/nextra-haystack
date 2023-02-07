@@ -1,0 +1,63 @@
+## <a name="overview"></a>Overview
+
+Spaces are modeled with the [space](space) marker tag.  Spaces include the physical structure of buildings including [floors](floor) and [rooms](room).  Spaces also encompass logical system-oriented [zones](zone-space) for HVAC, lighting, security, smoke/fire, etc.
+
+## <a name="tags"></a>Tags
+
+All spaces must define a [siteRef](siteRef) tag for their parent site.  In addition, when spaces are wholly contained by another space, they should model that relationship via the [spaceRef](spaceRef) tag.
+
+## <a name="floors"></a>Floors
+
+If a building has multiple floors, then each floor should be modeled using the [floor](floor) and [space](space) marker tags.  Floors are numbered using the [floorNum](floorNum) tag using the European convention where the ground floor is always floor zero. Subterranean floors are numbered using negative numbers.  Here are examples for the proper modeling of floors:
+
+    // ground floor; typically called first floor in the US
+    id: @site.floor1
+    dis: "Ground Floor"
+    ground
+    floor
+    space
+    floorNum: 0
+    siteRef: @site
+    
+    // basement floor
+    id: @site.basement
+    dis: "Basement Level 1"
+    subterranean
+    floor
+    space
+    floorNum: -1
+    siteRef: @site
+    
+    // roofs are modeled as a special floor
+    id: @site.roof
+    dis: "Roof level of two story building"
+    roof
+    floor
+    space
+    floorNum: 2
+    siteRef: @site
+
+## <a name="zones"></a>Zones
+
+Zones are system oriented spaces.  Currently we define the following zone types:
+
+* [hvac-zone-space](hvac-zone-space): heating/cooling/ventilation zones
+* [lighting-zone-space](lighting-zone-space): lighting zones
+
+
+Here is an example of an HVAC zone:
+
+    id: @site.zone3B
+    dis: "VAV Zone 3-B"
+    hvac
+    zone
+    space
+    siteRef: @site
+    spaceRef: @site.floor3
+
+Zones, and their associated points, are examined in detail in the [Zones](Zones) chapter.
+
+## <a name="dataCenters"></a>Data Centers
+
+Data centers are also modeled as a subtype of space. See the [DataCenters](DataCenters) chapter for details.
+

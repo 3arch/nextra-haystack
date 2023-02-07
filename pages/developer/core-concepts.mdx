@@ -1,0 +1,76 @@
+import { Card, Typography, Row, Col } from 'antd';
+import "antd/dist/antd.css";
+
+
+
+export const defCardList = [
+  {
+    name: 'Defs',
+    summary: 'Defs is a collection of named definitions that can be used to describe data models in the Project Haystack domain.',
+    link: 'https://project-haystack.org/doc/docHaystack/Defs',
+  },
+  {
+    name: 'Namespaces',
+    summary: 'Namespaces are used to partition and organize the definitions in a Project Haystack model.',
+    link: 'https://project-haystack.org/doc/docHaystack/Namespaces',
+  },
+  {
+    name: 'Subtyping',
+    summary: 'Subtyping allows definitions to inherit properties from a parent definition, allowing for easy reuse and maintenance of the model.',
+    link: 'https://project-haystack.org/doc/docHaystack/Subtyping',
+  },
+  {
+    name: 'Reflection',
+    summary: 'Reflection provides the ability to introspect and inspect the definitions in a Project Haystack model, including metadata and relationships between definitions.',
+    link: 'https://project-haystack.org/doc/docHaystack/Reflection',
+  },
+  {
+    name: 'Normalization',
+    summary: 'Normalization is the process of simplifying data into a consistent and standardized format for easier analysis and processing.',
+    link: 'https://project-haystack.org/doc/docHaystack/Normalization',
+  },
+  {
+    name: 'Association',
+    summary: 'Association is a relationship between two or more definitions in a Project Haystack model, linking them together in a meaningful way.',
+    link: 'https://project-haystack.org/doc/docHaystack/Associations',
+  },
+  {
+    name: 'Choices',
+    summary: 'Choices provide a mechanism for defining a limited set of allowed values for a definition in a Project Haystack model.',
+    link: 'https://project-haystack.org/doc/docHaystack/Choices',
+  },
+  {
+    name: 'Relationships',
+    summary: 'Relationships are a way to define the connection between different definitions in a Project Haystack model, such as parent-child relationships or other relationships between objects.',
+    link: 'https://project-haystack.org/doc/docHaystack/Relationships',
+  },
+  {
+    name: 'Protos',
+    summary: 'Protos are a way to define reusable sets of definitions in a Project Haystack model, allowing for easy sharing and reuse of commonly used definitions.',
+    link: 'https://project-haystack.org/doc/docHaystack/Protos',
+  },
+];
+
+
+
+export const DefCards = () => (
+  <Row gutter={16}>
+    {defCardList.map(card => (
+      <Col span={12} key={card.name}>
+        <Card style={{ margin: '1rem' }}>
+          <Typography.Title level={4}>{card.name}</Typography.Title>
+          <Typography.Paragraph>{card.summary}</Typography.Paragraph>
+          <a href={card.link}>Learn more</a>
+        </Card>
+      </Col>
+    ))}
+  </Row>
+);
+
+
+
+# Project Haystack Definitions
+
+
+
+<DefCards />

@@ -1,5 +1,6 @@
-import {Card} from "@tremor/react"
-import {Grid} from "@novo-int/novo-react"
+import {Card} from "antd"
+import "antd/dist/antd.css"
+import {TCard, Grid, Box} from "@novo-int/novo-react"
 
 # Project Haystack Documentation
 
@@ -10,9 +11,10 @@ Project Haystack is an open source initiative to develop a common data model and
 
 ## Understanding Taxonomy, Ontology, and Vocabulary
 
-<Grid numCols={2} yGap="1rem">
+<Box horizontal>
+
     ---
-    <Card decoration="top" decorationColor="blue">
+    <Card decoration="top" decorationColor="blue" style={{width: "50%"}}>
         
         **Vocabulary**
         
@@ -21,9 +23,8 @@ Project Haystack is an open source initiative to develop a common data model and
         used to describe data in a consistent and meaningful way.
     </Card>
 
-    ---
 
-    <Card  decoration="top" decorationColor="blue">   
+    <Card  decoration="top" decorationColor="blue" style={{width: "50%"}}>   
         **Taxonomy** 
         
         Refers to the practice of classifying things into categories and subcategories, 
@@ -31,7 +32,6 @@ Project Haystack is an open source initiative to develop a common data model and
         in which data is organized and categorized using the **subtype** and **supertype** relationships.
     </Card>
 
----
     <Card  decoration="top" decorationColor="blue">
         **Ontology** 
         
@@ -41,4 +41,4 @@ Project Haystack is an open source initiative to develop a common data model and
         example **airRef**, **elecRef**, **chillerRef**, etc. 
     </Card>
 
-</Grid>
+</Box>

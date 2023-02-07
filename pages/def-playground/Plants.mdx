@@ -1,0 +1,93 @@
+## <a name="overview"></a>Overview
+
+This chapter covers plants used to produce thermal energy for cooling or heating.  Haystack standardizes the following types of plants:
+
+* [chilled-water-plant](chilled-water-plant): produces chilled water for cooling
+* [hot-water-plant](hot-water-plant): produces hot water for heating
+* [steam-plant](steam-plant): produces steam water
+
+
+Typically, these plants supply [AHUs](AHUs) and [VAVs](VAVs) for HVAC applications.  But they can also be used for industrial processes.
+
+We typically use the term *central plant* to describe a plant that supplies a building or group of buildings.  When the plant supplies a municipality, we use the term *district plant*.  However, the Haystack modeling techniques described here are identical.
+
+Haystack models an entire plant as a single blackbox [equip](equip) entity. Equipment within the plant, including heat exchangers, pumps, boilers, and chillers, are modeled as children of the plant via the [equipRef](equipRef) tag.
+
+## <a name="chilledWaterPlants"></a>Chilled Water Plants
+
+Chilled water plants are modeled as a single black box using the [chilled-water-plant](chilled-water-plant) conjunct along with the [equip](equip) tag.  These plants are composed of the following types of sub-equipment:
+
+* [chiller](chiller)
+* [coolingTower](coolingTower)
+* [heatExchanger](heatExchanger)
+* [pump-motor](pump-motor)
+* [valve-actuator](valve-actuator)
+
+
+This diagram shows the salient equipment and fluid flows:
+
+![chilled water plant](chilled-water-plant.svg)
+
+## <a name="hotWaterPlants"></a>Hot Water Plants
+
+Hot water plants are modeled using the [hot-water-plant](hot-water-plant) conjunct along with the [equip](equip) tag.  These plants are composed of the following types of sub-equipment:
+
+* [hot-water-boiler](hot-water-boiler)
+* [heatExchanger](heatExchanger)
+* [pump-motor](pump-motor)
+* [valve-actuator](valve-actuator)
+
+
+## <a name="steamPlants"></a>Steam Plants
+
+Steam plants are modeled using the [steam-plant](steam-plant) conjunct along with the [equip](equip) tag.  These plants are composed of the following types of sub-equipment:
+
+* [steam-boiler](steam-boiler)
+* [heatExchanger](heatExchanger)
+* [pump-motor](pump-motor)
+* [valve-actuator](valve-actuator)
+
+
+## <a name="loops"></a>Loops
+
+Plants typically maintain a separation between the working fluid within the plant versus the fluid that supplies thermal energy to the building. We term the pipework within the central plant the [primaryLoop](primaryLoop) and the pipework from the plant to the building the [secondaryLoop](secondaryLoop).  These two loops are connected through [heat exchangers](heatExchanger).  In the case of a third loop connected to the second loop through a second set of heat exchangers we use the term [tertiaryLoop](tertiaryLoop).
+
+For example, here is how we would model a heat exchanger with a temperature sensor on the primary entering pipe and on the secondary leaving pipe:
+
+    id: @hx
+    dis: "Heat Exchanger"
+    chilled
+    water
+    heatExchanger
+    equip
+    equipRef: @plant
+    siteRef: @site
+    
+    id: @primary-temp
+    dis: "Primary Entering Temp Sensor"
+    chilled
+    water
+    primaryLoop
+    entering
+    temp
+    sensor
+    point
+    unit: "°C"
+    kind: "Number"
+    equipRef: @hx
+    siteRef: @site
+    
+    id: @secondary-temp
+    dis: "Secondary Leaving Temp Sensor"
+    chilled
+    water
+    secondaryLoop
+    leaving
+    temp
+    sensor
+    point
+    unit: "°C"
+    kind: "Number"
+    equipRef: @hx
+    siteRef: @site
+

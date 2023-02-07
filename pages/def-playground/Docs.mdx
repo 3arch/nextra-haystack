@@ -1,0 +1,88 @@
+## <a name="overview"></a>Overview
+
+This chapter provides guidance on how to use the reference documentation. Each section used in the documentation is described below.
+
+## <a name="index"></a>Index
+
+The main index page is composed of the following sections:
+
+### <a name="taxonomies"></a>Taxonomies
+
+This section lists key terms with a link to an index of the term's subtype tree.  You can add new terms into this section with the [docTaxonomy](docTaxonomy) tag.
+
+### <a name="listings"></a>Listings
+
+This section contains links to miscellaneous listing pages including:
+
+* `tags`: all terms composed of an atomic name
+* `conjuncts`: all terms composed of multiple tags
+* `libs`: listing of library modules
+* `filetypes`: listing of Haystack filetype encodings
+
+
+### <a name="tags-index"></a>Tags
+
+Section within a lib index that lists the terms defined by the lib module (both atomic tags and conjuncts).
+
+## <a name="manuals"></a>Manuals
+
+Manuals are hand written documents that provide design details to augment the auto-generated reference documentation.  Manuals are composed of chapters that correspond to individual HTML pages.
+
+A manual index is composed of two sections:
+
+* manual: summary information including name and brief overview
+* chapters: index of the manual's chapter pages
+
+
+## <a name="defs"></a>Defs
+
+Each def has its own reference page in the documentation composed of the following sections:
+
+### <a name="def"></a>Def
+
+The `def` section contains summary information for the definition including its identifier formatted [doc](doc) description.
+
+### <a name="conjunct"></a>Conjunct
+
+This section is used only for [conjuncts](Defs#conjuncts).  It provides a link to the definition of each of the conjunct's parts.
+
+### <a name="meta"></a>Meta
+
+The `meta` section documents the [normalized](Normalization) tags for the definition's representation as a dict.  Each tag present in the definition is listed here, although some values such as the `doc` or `enum` may reference another section.
+
+### <a name="usage"></a>Usage
+
+This section is used only on entity terms.  It lists the required marker tags that must be applied to a dict to correctly [implement](Reflection#implementation) the term.  It takes into account conjuncts and supertypes with the [mandatory](mandatory) marker.
+
+### <a name="enum"></a>Enum
+
+If the definition has the [enum](enum) tag, then this section provides a listing of the documented enumerations and their summary.
+
+### <a name="supertypes"></a>Supertypes
+
+This section lists the term's [supertypes](Subtyping).  The supertypes are organized as an indented tree down from most general to most specific. The first item is the root type, which is typically [marker](marker) or [val](val).  The last item will be the definition's declared supertype matching the [is](is) tag. If the term has multiple supertypes, then this tree will have multiple leaves.
+
+### <a name="subtypes"></a>Subtypes
+
+This section lists the term's [subtypes](Subtyping).  The subtypes are organized in an indented tree structure.
+
+### <a name="tags"></a>Tags
+
+This section lists the value tags associated with the entity via the [tagOn](tagOn) association.  This section also includes tags that are registered on the entity's supertypes.
+
+### <a name="children"></a>Children
+
+This section lists children [prototypes](Protos) that are "contained" by the given entity type.
+
+## <a name="protos"></a>Protos
+
+Prototypes are dict instances that model a predefined collection of tags.
+
+### <a name="proto"></a>Proto
+
+The `proto` section defines the prototypes tags.
+
+### <a name="implements"></a>Implements
+
+The definitions [implemented](Reflection#implementation) by the prototype.
+

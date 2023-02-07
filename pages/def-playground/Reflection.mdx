@@ -1,0 +1,73 @@
+## <a name="overview"></a>Overview
+
+Defs define our meta-model and dicts define our data instances. Haystack provides a standardized processes to map between the two:
+
+* *implementation*: mapping defs to a dict using the appropriate tags
+* *reflection*: mapping a dict to its effective defs
+
+
+We say a dict *implements* a def when the it contains the appropriate tags.  For example if a dict defines the [equip](equip) tag, then the dict implements the [equip](equip) def.  If a dict contains both the [hot](hot) and [water](water) tags then the dict implements [hot-water](hot-water).
+
+Reflection is the inverse process.  We are given a dict and we compute the list of effective defs that the it implements.
+
+Implementation and reflection in Haystack are a flavor of [structural typing](https://en.wikipedia.org/wiki/Structural_type_system). Dict data never explicitly declares itself of a single class or type. Instead we use a combination of marker tags to indicate typing information. We use value tags to indicate an attribute or fact about the data.
+
+## <a name="implementation"></a>Implementation
+
+The rules for a dict to implement a def are as follows:
+
+1. Based on the def type:    1. Tag def: the single tag name is applied
+    2. Conjunct: each tag within the conjunct is applied
+    3. Feature keys: are never implemented
+
+
+2. We walk the supertype tree of the def and apply any tag that is marked as [mandatory](mandatory)
+
+
+Lets look at some examples.
+
+If we want to apply the [point](point) def to a dict, then we apply rule 1a.  There are no supertypes marked as `mandatory,` so we are done.  Thus, we apply only `{point}` to fully implement the [point](point) def.
+
+If we wish to apply the [rtu](rtu) def, then we apply rule 1a.  However, when we walk the supertype tree, we see that it subtypes from two `mandatory` defs: [ahu](ahu) and [equip](equip).  Therefore, to implement [rtu](rtu) requires adding all three tags: `{rtu, ahu, equip}`.  As a general rule, top-level entity markers such as [site](site), [space](space), [equip](equip), [point](point) are always required. This makes it easy to query your tag based data.
+
+If we wish to apply the [hot-water-plant](hot-water-plant) def, then we will apply rule 1b. Additionally, this def subtypes from the mandatory [equip](equip) tag.  So we need to add four tags `{hot, water, plant, equip}`.
+
+## <a name="inheritance"></a>Inheritance
+
+When a dict implements a def, it implicitly implements all of that def's supertypes.  For example if we add the [water](water) tag to a dict, then we implicitly implement all of the supertypes of [water](water), which include [liquid](liquid), [fluid](fluid), [substance](substance), [phenomenon](phenomenon), and [marker](marker).  We call this flattened list of supertypes the def's *inheritance*.
+
+## <a name="reflection"></a>Reflection
+
+Reflection is the inverse of implementation.  Given a dict, we compute the defs it implements.  Reflection is always done within the context of a [namespace](Namespaces) to determine which defs are in scope.
+
+To reflect a dict to its def, we walk each tag in the dict and apply the following rules:
+
+1. Check if the tag name maps to a tag def
+2. If the tag maps to a possible conjunct, then check if the dict has all the conjunct's tags
+3. Infer the [inheritance](#inheritance) from all defs reflected from the previous steps
+
+
+Lets follow this process to reflect the following dict:
+
+    id: @hwp, dis: "Hot Water Plant", hot, water, plant, equip
+
+Step 1 yield: [id](id), [dis](dis), [hot](hot), [water](water), [plant](plant), [equip](equip)
+
+Step 2 yields: [hot-water](hot-water), [hot-water-plant](hot-water-plant)
+
+Step 3 yields:
+
+* from hot-water-plant/equip: [entity](entity), [marker](marker)
+* from id/dis: [ref](ref), [str](str), [scalar](scalar), [val](val)
+
+
+## <a name="entityTypes"></a>Entity Types
+
+We use markers extensively in Haystack to indicate typing information.  However, a marker tag is not a *type* per se.  In a tagging system, we use tags to quickly and easily associate data to related terms.  Let's examine our example from above:
+
+    id: @hwp, dis: "Hot Water Plant", hot, water, plant, equip
+
+This dict implements the term [hot-water](hot-water), but we would not say that the plant "is-a" type of hot-water.  Those tags only mean that this data is related to hot-water.  This makes it convenient to query our data for things related to hot-water, water, or liquid.
+
+However, we would say that the dict above "is-a" type of [hot-water-plant](hot-water-plant).  We can reflect this information because [hot-water-plant](hot-water-plant) is a subtype of [entity](entity). The `entity` subtype tree models primary typing information.  Terms that subtype from entity must be designed to stand on their own - they cannot be used in conjuncts.
+
